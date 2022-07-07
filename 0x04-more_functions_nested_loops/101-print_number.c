@@ -62,7 +62,8 @@ void print_number(int n)
 		}
 	}
 	if (digit == 0 && divisor == 1)
-OAOAOAOAOAOAOAOA	{
-OAOAOAOA		_putchar(48);
+	{
+		_putchar(48);
 	}
-OAOAOA}
+}
+Footer
