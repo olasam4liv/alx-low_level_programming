@@ -24,7 +24,10 @@ int main(void)
 		break;
 		c = c + r;
 		printf("%c", r);
+	
 	}
-	printf("%\n", (2772 - c));
+
+	int res = 2772 - c;
+	printf("%\n", res);
 	return (0);
 }
