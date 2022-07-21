@@ -1,56 +1,60 @@
 #include "main.h"
-int lengthc(char *s);
-int palindrome(char str[], int st, int end);
-/**
- * is_palindrome -entry point
- * @s: input
- * Return: 0
- */
-int is_palindrome(char *s)
-{
-	int len;
 
-	len = lengthc(s);
-
-	if (len == 0)
-	{
-		return (1);
-	}
-	return (palindrome(s, 0, len - 1));
-}
 /**
- * lengthc - find the lenth count
- * @s: input
- * Return: 0
+ * length - returns length of string
+ * @s: string
+ * Return: integer length
  */
-int lengthc(char *s)
+
+int length(char *s)
 {
+
 	if (*s != '\0')
 	{
-		return (1 + lengthc(s + 1));
+		return (1 + length(s + 1));
 	}
-	return (0);
-}
-/**
- * palindrom - checks if start and end of string matches
- * @str: string
- * @st: start of string 0
- * @end: end of sting from is_palindrom, from lengthc
- * Return: 0
- */
-int palindrom(char str[], int st, int end)
-{
-	if (st >= end)
-	{
-		return (1);
-	}
-	if (str[st] != str[end])
+	else
 	{
 		return (0);
 	}
-	if (st <= end || st < end + 1)
-	{
-		return (palindrom(str, st + 1, end - 1));
-	}
-	return (1);
+}
+
+/**
+ * compare - compare characters
+ * @s: string
+ * @beg: beginning index
+ * @end: end index
+ * Return: integer indicating non-match 0, match 1
+ */
+
+int compare(char *s, int beg, int end)
+{
+	if (s[beg] != s[end])
+		return (0);
+	else if (beg == end && s[beg] == s[end])
+		return (1);
+	else if (beg == end - 1 && s[beg] == s[end])
+		return (1);
+	else
+		return (compare(s, beg + 1, end - 1));
+}
+
+/**
+ * is_palindrome - checks is string is a palindrome
+ * @s: string
+ * Return: integer, 1 if palindrom, 0 if not
+ */
+
+int is_palindrome(char *s)
+{
+	int len, beg, end;
+
+	len = length(s);
+	beg = 0;
+	end = len - 1;
+
+	if (len == 0 || len == 1)
+		return (1);
+	else
+		return (compare(s, beg, end));
 }
